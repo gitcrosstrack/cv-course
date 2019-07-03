@@ -1,0 +1,21 @@
+python 环境最好是3.5的
+安装 anaconda
+
+配置 jupyter 的默认浏览器和 文件夹
+
+1.在anaconda prompt 里输入jupyter notebook --generate-config，会返回：
+Writing default config to: C:\Users\zdq\.jupyter\jupyter_notebook_config.py
+2.在该文件里修改内容：
+搜索'  c.NotebookApp.notebook_dir  '
+
+将本行的“#”去掉，并在后面的单引号中添加你想设定的目录
+如c.NotebookApp.notebook_dir = 'H:\\workspace\\notebook'
+搜索‘  c.NotebookApp.browser ’，在下面增加以下语句：
+
+import webbrowser
+
+webbrowser.register("chrome",None,webbrowser.GenericBrowser(u"C:\\ProgramFiles(x86)\\Google\\Chrome\\Application\\chrome.exe"))
+
+c.NotebookApp.browser = 'chrome'
+
+浏览器始终改不成功，只好放弃
