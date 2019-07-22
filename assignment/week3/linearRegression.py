@@ -18,15 +18,13 @@ class LinearRegression(object):
     def eval_loss(self, w, b, x_list, gt_y_list):
         return np.square((w * x_list + b - gt_y_list)).mean() * 0.5
 
-
     def gradient(self, pred_y, gt_y, x):
         diff = pred_y - gt_y
         dw = diff * x
         db = diff
         return dw, db
 
-
-    def cal_step_gradient(self, batch_x_list, batch_gt_y_list, w, b, lr):
+    def cal_step_gradient(self, batch_x_list, batch_gt_y_list, w, b):
         avg_dw, avg_db = 0, 0
         batch_size = len(batch_x_list)
         for i in range(batch_size):
@@ -40,7 +38,6 @@ class LinearRegression(object):
         b -= lr * avg_db
         return w, b
 
-
     def train(self):
         w = 0
         b = 0
@@ -49,9 +46,9 @@ class LinearRegression(object):
             batch_idxs = np.random.choice(num_samples, int(num_samples * self.sample_ratio))
             batch_x = self.x_list[batch_idxs]
             batch_y = self.y_list[batch_idxs]
-            w, b = self.cal_step_gradient(batch_x, batch_y, w, b, self.lr)
+            w, b = self.cal_step_gradient(batch_x, batch_y, w, b)
             print('w:{0}, b:{1}'.format(w, b))
-            print('loss is {0}'.format(self.eval_loss(w, b, x_list, gt_y_list)))
+            print('loss is {0}'.format(self.eval_loss(w, b, self.x_list, self.y_list)))
 
 
 

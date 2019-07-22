@@ -27,6 +27,35 @@
 #       def ransacMatching(A, B):
 #           A & B: List of List
 
-'''
 
+
+
+
+
+
+'''
+ pseudo code as below:
+
+                 ransacMatching
+ Input  : two list of list donating 2 sets of points
+ Output : the homograph matrix between 2 sets
+
+ -------------------------------------------------
+ k := max_iter
+ best_matrix
+ cnt_inliers_max := 0
+ while k >0 do
+    sample = getRandomPointFromAB(A,B)
+    homo_matrix = getHomograph(sample)
+    inliers = sample
+    transformed_a_by_homograph = transform(homo_matrix,A)
+    for point in transformed_a_by_homograph:
+        err = distance(point,point_B)
+        if err < dis_threshold :
+            inliers.append((point,pointB)
+    if len(inliers) > cnt_inliers_max :
+        cnt_inliers_max = len(inliers)
+        best_matrix = homo_matrix
+    k--
+  return best_matrix
 '''
