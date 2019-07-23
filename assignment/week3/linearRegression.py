@@ -34,8 +34,8 @@ class LinearRegression(object):
             avg_db += db
         avg_dw /= batch_size
         avg_db /= batch_size
-        w -= lr * avg_dw
-        b -= lr * avg_db
+        w -= self.lr * avg_dw
+        b -= self.lr * avg_db
         return w, b
 
     def train(self):
@@ -52,15 +52,6 @@ class LinearRegression(object):
 
 
 
-
-
-def run():
-
-    lr = 0.001
-    max_iter = 10000
-    train(x_list, y_list, 50, lr, max_iter)
-
-
 def gen_sample_data(num_samples=100):
     w = random.randint(0, 10) + random.random()		# for noise random.random[0, 1)
     b = random.randint(0, 5) + random.random()
@@ -71,5 +62,6 @@ def gen_sample_data(num_samples=100):
 if __name__ == '__main__':
     num_samples = 100
     x_list, y_list, w, b = gen_sample_data(num_samples)
-    liner_regression = LinearRegression(x_list, y_list, 0.001, 10000,)
+    print('set w:%f,b:%f' %(w, b))
+    liner_regression = LinearRegression(x_list, y_list, 0.001, 10000)
     liner_regression.train()
