@@ -45,6 +45,7 @@ class LinearRegression(object):
 
         avg_dw = np.sum(np.dot(X, dz.T), axis=0) / len(y)
         avg_db = np.sum(dz) * 1.0/len(y)
+
         w -= self.lr * avg_dw
         b -= self.lr * avg_db
         return w, b
@@ -81,6 +82,7 @@ class LinearRegression(object):
 
 
 
+
 class LogisticRegression(LinearRegression):
 
     def inference(self, w, b, X):
@@ -110,3 +112,4 @@ if __name__ == '__main__':
     print('-------------logistic regression-----------')
     logistic_regression = LogisticRegression(0.001, 10000)
     logistic_regression.start_test()
+
