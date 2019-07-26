@@ -15,7 +15,7 @@ function and use the result of that as your "new X" and also you need to generat
 
 import numpy as np
 import random
-
+import matplotlib.pyplot as plt
 
 class LinearRegression(object):
 
@@ -93,13 +93,13 @@ class LogisticRegression(LinearRegression):
 
 
     def gen_sample_data(self, num_samples=100):
-        w = np.random.randint(0, 10, 1) + random.random()  # for noise random.random[0, 1)
+        w = np.random.randint(0, 5, 1) + random.random()  # for noise random.random[0, 1)
         b = np.random.randint(0, 5, 1) + random.random()
         X = np.random.randint(0, 100, size=(1, num_samples)) * random.random()
-        err = np.multiply(np.random.random(num_samples), np.random.randint(-1, 1,num_samples))
+        err = np.multiply(np.random.random(num_samples), np.random.randint(-2, 2, num_samples))
         y_list = np.dot(w.T, X)+ b  + err
-        r_list = np.array([1 if y >= 0 else 0 for y in err])
-        X = np.array([X[0],y_list])
+        r_list = np.array([1 if y <= 0 else 0 for y in err])
+        X = np.array([X[0], y_list])
 
         return X, r_list, w, b
 
